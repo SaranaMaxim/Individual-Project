@@ -2,8 +2,8 @@ import telebot
 from telebot import types
 bot = telebot.TeleBot('6605974541:AAHK8C1ZwDC4JpTNqfC-Fvxhm4ucCqJnbLo')
 
-gamelist = ['ARK: Survival Evolved', 'Black Russia', 'Brawl Stars', 'CarX Drift Racing', 'Counter-Strike 2', 'Crossout', 'Cyberpunk 2077', 'Dead by Daylight', 'Dota 2', 'Dying Light 2', 'GTA5', 'Hearts of Iron IV', 'Minecraft', 'Mobile Legends', 'PUBG', 'PUBG Mobile', 'Radmir', 'Rust', 'War Thunder', 'Warface', 'Woorld of Tanks', 'World of Tanks Blitz','YouTube', 'Telegram Premium', 'ВК', 'Netflix']
-
+gamelist = ['ARK: Survival Evolved', 'Black Russia', 'Brawl Stars', 'CarX Drift Racing', 'Counter-Strike 2', 'Crossout', 'Cyberpunk 2077', 'Dead by Daylight', 'Dota 2', 'Dying Light 2', 'GTA5', 'Hearts of Iron IV', 'Minecraft', 'Mobile Legends', 'PUBG', 'PUBG Mobile', 'Radmir', 'Rust', 'War Thunder', 'Warface', 'World of Tanks', 'World of Tanks Blitz','YouTube', 'Telegram Premium', 'ВК', 'Netflix']
+game = 0
 @bot.message_handler(commands=['start'])
 def cmd_start(message):
     markup_re = types.ReplyKeyboardMarkup()
@@ -15,7 +15,13 @@ def cmd_start(message):
 def on_click(message):
     if message.text == 'Выбрать игру':
         bot.send_message(message.chat.id, 'Напишите название в чат так, как она указана в списке игр, чтобы посмотреть список игр /help')
-        
+        bot.register_next_step_handler(message, game_choose)
+
+def game_choose(message):
+    if message.text in gamelist:
+        game = gamelist.index(message.text)
+        bot.send_message(message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+
 @bot.message_handler(commands=['help'])
 def cmd_start(message):
     murkup = types.InlineKeyboardMarkup()
@@ -25,10 +31,7 @@ def cmd_start(message):
 @bot.callback_query_handler(func=lambda callback: True)
 def callback_message(callback):
     if callback.data == 'help':
-        bot.send_message(callback.message.chat.id, 'В перечень входят такие игры как: ARK: Survival Evolved, Black Russia, Brawl Stars, CarX Drift Racing, Counter-Strike 2, Crossout, Cyberpunk 2077, Dead by Daylight, Dota 2, Dying Light 2, GTA5, Hearts of Iron IV, Minecraft, Mobile Legends, PUBG, PUBG Mobile, Radmir, Rust, War Thunder, Warface, World of Tanks, World of Tanks Blitz. Так-же доступен парсинг каналов YouTube, Telegram Premium, Подписок на ВК и Кинотеатры')
-
- 
-
+        bot.send_message(callback.message.chat.id, 'В перечень входят такие игры как: ARK: Survival Evolved, Black Russia, Brawl Stars, CarX Drift Racing, Counter-Strike 2, Crossout, Cyberpunk 2077, Dead by Daylight, Dota 2, Dying Light 2, GTA5, Hearts of Iron IV, Minecraft, Mobile Legends, PUBG, PUBG Mobile, Radmir, Rust, War Thunder, Warface, World of Tanks, World of Tanks Blitz. Так-же доступен парсинг каналов YouTube, Telegram Premium, Подписок на ВК и Netflix')
 
 
 bot.polling(none_stop=True)
