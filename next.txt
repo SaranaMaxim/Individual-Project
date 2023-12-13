@@ -1,0 +1,66 @@
+       game8 = types.InlineKeyboardButton('Dead by Daylight', callback_data='dbd')
+        game9 = types.InlineKeyboardButton('Dota 2', callback_data='dota')
+        game10 = types.InlineKeyboardButton('Dying Light 2', callback_data='dl')
+        game11 = types.InlineKeyboardButton('GTA5', callback_data='gta')
+        game12 = types.InlineKeyboardButton('HoI IV', callback_data='hoi')
+        game13 = types.InlineKeyboardButton('Minecraft', callback_data='mn')
+        game14 = types.InlineKeyboardButton('Mobl', callback_data='mb')
+        game15 = types.InlineKeyboardButton('PUBG', callback_data='pubg')
+        game16 = types.InlineKeyboardButton('PUBG Mobile', callback_data='pubgm')
+        game17 = types.InlineKeyboardButton('Radmir', callback_data='rr')
+        game18 = types.InlineKeyboardButton('Rust', callback_data='ru')
+        game19 = types.InlineKeyboardButton('War Thunder', callback_data='wt')
+        game20 = types.InlineKeyboardButton('Warface', callback_data='wf')
+        game21 = types.InlineKeyboardButton('Wot', callback_data='wot')
+        game22 = types.InlineKeyboardButton('WoTB', callback_data='wotb')
+        game23 = types.InlineKeyboardButton('YouTube', callback_data='yt')
+        game24 = types.InlineKeyboardButton('Telegram', callback_data='tg')
+        game23 = types.InlineKeyboardButton('BK', callback_data='vk')
+        game24 = types.InlineKeyboardButton('Netflix', callback_data='nt')
+        murkup.row(game1, game2)
+        murkup.row(game3, game4)
+        murkup.row(game5, game6)
+        murkup.row(game7, game8)
+        murkup.row(game9, game10)
+        murkup.row(game11, game12)
+        murkup.row(game13, game14)
+        murkup.row(game15, game16)
+        murkup.row(game17, game18)
+        murkup.row(game19, game20)
+        murkup.row(game21, game22)
+        murkup.row(game23, game24)
+
+if callback.data == 'dbd':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'dota':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'dl':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'gta':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'hoi':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'mn':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'mb':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'pubg':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'pubgm':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'rr':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'ru':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'wt':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'wf':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'wot':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'wotb':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'vk':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'nt':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
