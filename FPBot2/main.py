@@ -21,7 +21,7 @@ def cmd_help(message):
 
 @bot.message_handler(content_types='text')
 def on_click(message):
-    if message.text == 'Выбрать игру' or callback.data == 'first':
+    if message.text == 'Выбрать игру':
         murkup = types.InlineKeyboardMarkup()
         game1 = types.InlineKeyboardButton('ARK', callback_data='ark')
         game2 = types.InlineKeyboardButton('Black Russia', callback_data='br')
@@ -71,6 +71,18 @@ def callback_message(callback):
         murkup_2page.row(game11, game12)
         murkup_2page.row(nextp2)
         bot.send_message(callback.message.chat.id, 'Выберите игру из списка ниже!  2 страница', reply_markup=murkup_2page)
+    elif callback.data == 'dbd':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'dota':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'dl':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'gta':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'hoi':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'mn':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
     elif callback.data == 'np2':
         murkup_3page = types.InlineKeyboardMarkup()
         game13 = types.InlineKeyboardButton('Mobl', callback_data='mb')
@@ -85,13 +97,25 @@ def callback_message(callback):
         murkup_3page.row(game17, game18)
         murkup_3page.row(nextp3)
         bot.send_message(callback.message.chat.id, 'Выберите игру из списка ниже! 3 страница', reply_markup=murkup_3page)
+    elif callback.data == 'mb':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'pubg':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'pubgm':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'rr':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'ru':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'wt':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
     elif callback.data == 'np3':
         murkup_4page = types.InlineKeyboardMarkup()
         game19 = types.InlineKeyboardButton('Warface', callback_data='wf')
         game20 = types.InlineKeyboardButton('Wot', callback_data='wot')
         game21 = types.InlineKeyboardButton('WotB', callback_data='wotb')
         game22 = types.InlineKeyboardButton('YouTube', callback_data='yt')
-        game23 = types.InlineKeyboardButton('Telegram', callback_data='rg')
+        game23 = types.InlineKeyboardButton('Telegram', callback_data='tg')
         game24 = types.InlineKeyboardButton('VK', callback_data='vk')
         nextp4 = types.InlineKeyboardButton('Последняя страница>>', callback_data='np4')
         murkup_4page.row(game19, game20)
@@ -99,6 +123,18 @@ def callback_message(callback):
         murkup_4page.row(game23, game24)
         murkup_4page.row(nextp4)
         bot.send_message(callback.message.chat.id, 'Выберите игру из списка ниже! 4 страница', reply_markup=murkup_4page)
+    elif callback.data == 'wf':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'wot':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'wotb':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'yt':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'tg':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
+    elif callback.data == 'vk':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
     elif callback.data == 'np4':
         murkup_5page = types.InlineKeyboardMarkup()
         game25 = types.InlineKeyboardButton('Netflix', callback_data='ns')
@@ -106,6 +142,8 @@ def callback_message(callback):
         murkup_5page.row(game25)
         murkup_5page.row(nextp5)
         bot.send_message(callback.message.chat.id, 'Выберите игру из списка ниже! 5 страница', reply_markup=murkup_5page)
+    elif callback.data == 'ns':
+        bot.send_message(callback.message.chat.id, 'Хороший выбор! Теперь выберите категорию')
     elif callback.data == 'first':
         murkup = types.InlineKeyboardMarkup()
         game1 = types.InlineKeyboardButton('ARK', callback_data='ark')
