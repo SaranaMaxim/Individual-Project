@@ -3,7 +3,7 @@ from telebot import types
 bot = telebot.TeleBot('6605974541:AAHK8C1ZwDC4JpTNqfC-Fvxhm4ucCqJnbLo')
 
 gamelist = ['ARK: Survival Evolved', 'Black Russia', 'Brawl Stars', 'CarX Drift Racing', 'Counter-Strike 2', 'Crossout', 'Cyberpunk 2077', 'Dead by Daylight', 'Dota 2', 'Dying Light 2', 'GTA5', 'Hearts of Iron IV', 'Minecraft', 'Mobile Legends', 'PUBG', 'PUBG Mobile', 'Radmir', 'Rust', 'War Thunder', 'Warface', 'World of Tanks', 'World of Tanks Blitz','YouTube', 'Telegram Premium', 'ВК', 'Netflix']
-game = 0
+
 @bot.message_handler(commands=['start'])
 def cmd_start(message):
     markup_re = types.ReplyKeyboardMarkup()
@@ -15,12 +15,12 @@ def cmd_start(message):
 
 @bot.message_handler(commands=['help'])
 def cmd_help(message):
-    bot.send_message(message.chat.id, '🦾Данный бот создан для парсинга <u>самых популярных игр</u> с биржи <b>FunPay</b>, здесь вы можете подобрать для себя самый лучший вариант какой либо услуги по цене/качеству🥇✔', parse_mode='html', reply_markup=murkup)
+    bot.send_message(message.chat.id, '🦾Данный бот создан для парсинга <u>самых популярных игр</u> с биржи <b>FunPay</b>, здесь вы можете подобрать для себя самый лучший вариант какой либо услуги по цене/качеству🥇✔', parse_mode='html')
 
 @bot.message_handler(content_types='text')
 def on_click(message):
     if message.text == 'Выбрать игру':
-        murkup = types.InlineKeyboardMarkup()
+        murkup_page1 = types.InlineKeyboardMarkup()
         game1 = types.InlineKeyboardButton('ARK', callback_data='ark')
         game2 = types.InlineKeyboardButton('Black Russia', callback_data='br')
         game3 = types.InlineKeyboardButton('Brawl Stars', callback_data='bs')
@@ -28,11 +28,11 @@ def on_click(message):
         game5 = types.InlineKeyboardButton('CS Go 2', callback_data='cs')
         game6 = types.InlineKeyboardButton('Crossout', callback_data='cr')
         nextp = types.InlineKeyboardButton('Следующая страница>>', callback_data='p2')
-        murkup.row(game1, game2)
-        murkup.row(game3, game4)
-        murkup.row(game5, game6)
-        murkup.row(nextp)
-        bot.send_message(message.chat.id, '🎮Выберите игру из списка ниже!', reply_markup=murkup)
+        murkup_page1.row(game1, game2)
+        murkup_page1.row(game3, game4)
+        murkup_page1.row(game5, game6)
+        murkup_page1.row(nextp)
+        bot.send_message(message.chat.id, '🎮Выберите игру из списка ниже!', reply_markup=murkup_page1)
 
 @bot.callback_query_handler(func=lambda callback: True)
 def callback_message(callback):
@@ -139,7 +139,7 @@ def callback_message(callback):
     elif callback.data == 'ns':
         bot.send_message(callback.message.chat.id, 'Хороший выбор!👍 Теперь выберите категорию📝')
     elif callback.data == 'p1':
-        murkup = types.InlineKeyboardMarkup()
+        murkup2_page1 = types.InlineKeyboardMarkup()
         game1 = types.InlineKeyboardButton('ARK', callback_data='ark')
         game2 = types.InlineKeyboardButton('Black Russia', callback_data='br')
         game3 = types.InlineKeyboardButton('Brawl Stars', callback_data='bs')
@@ -147,10 +147,10 @@ def callback_message(callback):
         game5 = types.InlineKeyboardButton('CS Go 2', callback_data='cs')
         game6 = types.InlineKeyboardButton('Crossout', callback_data='cr')
         nextp = types.InlineKeyboardButton('Следующая страница>>', callback_data='p2')
-        murkup.row(game1, game2)
-        murkup.row(game3, game4)
-        murkup.row(game5, game6)
-        murkup.row(nextp)
-        bot.send_message(callback.message.chat.id, '🎮Выберите игру из списка ниже!', reply_markup=murkup)
+        murkup2_page1.row(game1, game2)
+        murkup2_page1.row(game3, game4)
+        murkup2_page1.row(game5, game6)
+        murkup2_page1.row(nextp)
+        bot.send_message(callback.message.chat.id, '🎮Выберите игру из списка ниже!', reply_markup=murkup2_page1)
 
 bot.polling(none_stop=True)
