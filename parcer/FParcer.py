@@ -3,17 +3,16 @@ from bs4 import BeautifulSoup as BS
 r = requests.get("https://funpay.com/lots/81/")
 html = BS(r.content, 'html.parser')
 
-#for el in html.select(".tc-item > .tc-desc"):
-#	name = el.select(".tc-desc-text")
-#	print(name)
-price_dota2 = []
-for el in html.select(".tc-item > .tc-price"):
-	price = el.select("div")
-	price_dota2.append(price[0].text[:-2])
-print(price_dota2)
-min = 1000000
-for el in price_dota2:
-	if el < min:
-		min = el
-print(min)
-
+sold_dota2 = []
+name_dota2 = []
+popa = []
+for el in html.select(".tc-item"):
+	text = el.select(".tc-desc > .tc-desc-text")
+	sold = el.select(".tc-price > div")
+	user = el.select(".media-user-name")
+	reviews = el.select(".media-user-reviews")
+	user_info = el.select(".media-user-info")
+	ob = []
+	ob.extend(["Описание: " + text[0].text, "Цена: " + sold[0].text, "Продавец: " + user[0].text + "Отзывы: " + reviews[0].text + user_info[0].text])
+	popa.append(ob)
+print(popa[0][0], "\n", popa[0][1], "\n", popa[0][2], sep='')
