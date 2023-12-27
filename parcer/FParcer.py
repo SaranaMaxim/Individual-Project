@@ -8,7 +8,7 @@ name_dota2 = []
 popa = []
 for el in html.select(".tc-item"):
 	text = el.select(".tc-desc > .tc-desc-text")
-	sold = el.select(".tc-price > div")
+	price = el.select(".tc-price > div")
 	user = el.select(".media-user-name")
 	reviews = el.select(".media-user-reviews")
 	user_info = el.select(".media-user-info")
