@@ -13,6 +13,6 @@ for el in html.select(".tc-item"):
 	reviews = el.select(".media-user-reviews")
 	user_info = el.select(".media-user-info")
 	ob = []
-	ob.extend(["Описание: " + text[0].text, "Цена: " + sold[0].text, "Продавец: " + user[0].text + "Отзывы: " + reviews[0].text + user_info[0].text])
+	ob.extend(["Описание: " + text[0].text, "Цена: " + price[0].text, "Продавец: " + user[0].text + "Отзывы: " + reviews[0].text + user_info[0].text])
 	popa.append(ob)
 print(popa[0][0], "\n", popa[0][1], "\n", popa[0][2], sep='')
