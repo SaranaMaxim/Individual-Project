@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup as BS
-r = requests.get("https://funpay.com/lots/81/")
+r = requests.get("https://funpay.com/lots/221/")
 html = BS(r.content, 'html.parser')
 
 sold_dota2 = []
