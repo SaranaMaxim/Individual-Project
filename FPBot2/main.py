@@ -713,7 +713,7 @@ def parseryt(backyt_offer):
         return f'{title}\n{user}\n{price}\n{url}'
     else:
         return None, offer
-def parsertg(backrr_offer):
+def parsertg(backtg_offer):
     r_tgacc = requests.get("https://funpay.com/lots/2424/")
     html_tgacc = BS(r_tgacc.content, 'html.parser')
     offer = html_tgacc.find("a", class_="tc-item")
