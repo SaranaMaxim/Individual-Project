@@ -11,21 +11,8 @@ def cmd_start(message):
     markup_re = types.ReplyKeyboardMarkup()
     button1 = types.KeyboardButton('Выбрать игру')
     markup_re.row(button1)
-    bot.send_message(message.chat.id, 'Добро пожаловать в телеграмм бот - парсер игровой биржи <b>FunPay! Для большей информации - /help</b>', parse_mode='html', reply_markup=markup_re)
+    bot.send_message(message.chat.id, 'Добро пожаловать - 🦾Данный бот создан для парсинга <u>самых популярных игр</u> с биржи <b>FunPay</b>, здесь вы можете подобрать для себя самый лучший вариант какой либо услуги по цене/качеству🥇✔', parse_mode='html', reply_markup=markup_re)
     bot.register_next_step_handler(message, on_click)
-
-# @bot.message_handler(content_types='text')
-# def on_click(message):
-#     if message.text == 'Выбрать игру':
-#         murkup_page1 = types.InlineKeyboardMarkup()
-#         game8 = types.InlineKeyboardButton('Dota 2', callback_data='dota')
-#         murkup_page1.row(game8)
-#         bot.send_message(message.chat.id, '🎮Выберите игру из списка ниже!', reply_markup=murkup_page1)
-
-
-@bot.message_handler(commands=['help'])
-def cmd_help(message):
-    bot.send_message(message.chat.id, '🦾Данный бот создан для парсинга <u>самых популярных игр</u> с биржи <b>FunPay</b>, здесь вы можете подобрать для себя самый лучший вариант какой либо услуги по цене/качеству🥇✔', parse_mode='html')
 
 @bot.message_handler(content_types='text')
 def on_click(message):
@@ -43,10 +30,9 @@ def on_click(message):
         murkup_page1.row(nextp)
         bot.send_message(message.chat.id, '🎮Выберите игру из списка ниже!', reply_markup=murkup_page1)
 
-
 @bot.callback_query_handler(func=lambda callback: True)
 def callback_message(callback):
-    if callback.data == 'p1':
+    if callback.data == 'p1' or callback.data == "no":
              murkup2_page1 = types.InlineKeyboardMarkup()
              game1 = types.InlineKeyboardButton('ARK', callback_data='ark')
              game2 = types.InlineKeyboardButton('Black Russia', callback_data='br')
@@ -122,13 +108,14 @@ def callback_message(callback):
         murkup_ark.row(answery, answern)
         bot.send_message(callback.message.chat.id, 'Начать ли отслеживать объявления?', reply_markup=murkup_ark)
     elif callback.data == 'y1':
-        backark_offer = 0
+        backark_postid = 0
         while True:
-            offerark_text = parserark(backark_offer)
-            backark_offer = offerark_text[1]
+            offerark_text = parserark(backark_postid)
+            backark_postid = offerark_text[1]
+            print(offerark_text[1])
             if offerark_text[0] != None:
                 bot.send_message(callback.message.chat.id, offerark_text)
-                time.sleep(600)
+                time.sleep(3)
     elif callback.data == 'br':
         murkup_br = types.InlineKeyboardMarkup()
         ybr = types.InlineKeyboardButton('Да', callback_data='y2')
@@ -311,6 +298,147 @@ def callback_message(callback):
             if offerpubgm_text[0] != None:
                 bot.send_message(callback.message.chat.id, offerpubgm_text)
                 time.sleep(600)
+    elif callback.data == 'rr':
+        murkup_rr = types.InlineKeyboardMarkup()
+        yrr = types.InlineKeyboardButton('Да', callback_data='y14')
+        nrr = types.InlineKeyboardButton('Нет', callback_data='no')
+        murkup_rr.row(yrr, nrr)
+        bot.send_message(callback.message.chat.id, 'Начать ли отслеживать объявления?', reply_markup=murkup_rr)
+    elif callback.data == 'y14':
+        backrr_offer = 0
+        while True:
+            offerrr_text = parserrr(backrr_offer)
+            backrr_offer = offerrr_text[1]
+            if offerrr_text[0] != None:
+                bot.send_message(callback.message.chat.id, offerrr_text)
+                time.sleep(600)
+    elif callback.data == 'ru':
+        murkup_ru = types.InlineKeyboardMarkup()
+        yru = types.InlineKeyboardButton('Да', callback_data='y15')
+        nru = types.InlineKeyboardButton('Нет', callback_data='no')
+        murkup_ru.row(yru, nru)
+        bot.send_message(callback.message.chat.id, 'Начать ли отслеживать объявления?', reply_markup=murkup_ru)
+    elif callback.data == 'y15':
+        backru_offer = 0
+        while True:
+            offerru_text = parserru(backru_offer)
+            backru_offer = offerru_text[1]
+            if offerru_text[0] != None:
+                bot.send_message(callback.message.chat.id, offerru_text)
+                time.sleep(600)
+    elif callback.data == 'wt':
+        murkup_wt = types.InlineKeyboardMarkup()
+        ywt = types.InlineKeyboardButton('Да', callback_data='y16')
+        nwt = types.InlineKeyboardButton('Нет', callback_data='no')
+        murkup_wt.row(ywt, nwt)
+        bot.send_message(callback.message.chat.id, 'Начать ли отслеживать объявления?', reply_markup=murkup_wt)
+    elif callback.data == 'y16':
+        backwt_offer = 0
+        while True:
+            offerwt_text = parserwt(backwt_offer)
+            backwt_offer = offerwt_text[1]
+            if offerwt_text[0] != None:
+                bot.send_message(callback.message.chat.id, offerwt_text)
+                time.sleep(600)
+    elif callback.data == 'wf':
+        murkup_wf = types.InlineKeyboardMarkup()
+        ywf = types.InlineKeyboardButton('Да', callback_data='y17')
+        nwf = types.InlineKeyboardButton('Нет', callback_data='no')
+        murkup_wf.row(ywf, nwf)
+        bot.send_message(callback.message.chat.id, 'Начать ли отслеживать объявления?', reply_markup=murkup_wf)
+    elif callback.data == 'y17':
+        backwf_offer = 0
+        while True:
+            offerwf_text = parserwf(backwf_offer)
+            backwf_offer = offerwf_text[1]
+            if offerwf_text[0] != None:
+                bot.send_message(callback.message.chat.id, offerwf_text)
+                time.sleep(600)
+    elif callback.data == 'wot':
+        murkup_wot = types.InlineKeyboardMarkup()
+        ywot= types.InlineKeyboardButton('Да', callback_data='y18')
+        nwot = types.InlineKeyboardButton('Нет', callback_data='no')
+        murkup_wot.row(ywot, nwot)
+        bot.send_message(callback.message.chat.id, 'Начать ли отслеживать объявления?', reply_markup=murkup_wot)
+    elif callback.data == 'y18':
+        backwot_offer = 0
+        while True:
+            offerwot_text = parserwot(backwot_offer)
+            backwot_offer = offerwot_text[1]
+            if offerwot_text[0] != None:
+                bot.send_message(callback.message.chat.id, offerwot_text)
+                time.sleep(600)
+    elif callback.data == 'wotb':
+        murkup_wotb = types.InlineKeyboardMarkup()
+        ywotb = types.InlineKeyboardButton('Да', callback_data='y19')
+        nwotb = types.InlineKeyboardButton('Нет', callback_data='no')
+        murkup_wotb.row(ywotb, nwotb)
+        bot.send_message(callback.message.chat.id, 'Начать ли отслеживать объявления?', reply_markup=murkup_wotb)
+    elif callback.data == 'y19':
+        backwotb_offer = 0
+        while True:
+            offerwotb_text = parserwotb(backwotb_offer)
+            backwotb_offer = offerwotb_text[1]
+            if offerwotb_text[0] != None:
+                bot.send_message(callback.message.chat.id, offerwotb_text)
+                time.sleep(600)
+    elif callback.data == 'yt':
+        murkup_yt = types.InlineKeyboardMarkup()
+        yyt = types.InlineKeyboardButton('Да', callback_data='y20')
+        nyt = types.InlineKeyboardButton('Нет', callback_data='no')
+        murkup_yt.row(yyt, nyt)
+        bot.send_message(callback.message.chat.id, 'Начать ли отслеживать объявления?', reply_markup=murkup_yt)
+    elif callback.data == 'y20':
+        backyt_offer = 0
+        while True:
+            offeryt_text = parseryt(backyt_offer)
+            backyt_offer = offeryt_text[1]
+            if offeryt_text[0] != None:
+                bot.send_message(callback.message.chat.id, offeryt_text)
+                time.sleep(600)
+    elif callback.data == 'tg':
+        murkup_tg = types.InlineKeyboardMarkup()
+        ytg = types.InlineKeyboardButton('Да', callback_data='y21')
+        ntg = types.InlineKeyboardButton('Нет', callback_data='no')
+        murkup_tg.row(ytg, ntg)
+        bot.send_message(callback.message.chat.id, 'Начать ли отслеживать объявления?', reply_markup=murkup_tg)
+    elif callback.data == 'y21':
+        backtg_offer = 0
+        while True:
+            offertg_text = parsertg(backtg_offer)
+            backtg_offer = offertg_text[1]
+            if offertg_text[0] != None:
+                bot.send_message(callback.message.chat.id, offertg_text)
+                time.sleep(600)
+    elif callback.data == 'vk':
+        murkup_vk = types.InlineKeyboardMarkup()
+        yvk = types.InlineKeyboardButton('Да', callback_data='y22')
+        nvk = types.InlineKeyboardButton('Нет', callback_data='no')
+        murkup_vk.row(yvk, nvk)
+        bot.send_message(callback.message.chat.id, 'Начать ли отслеживать объявления по продаже сообществ?', reply_markup=murkup_vk)
+    elif callback.data == 'y22':
+        backvk_offer = 0
+        while True:
+            offervk_text = parservk(backvk_offer)
+            backvk_offer = offervk_text[1]
+            if offervk_text[0] != None:
+                bot.send_message(callback.message.chat.id, offervk_text)
+                time.sleep(600)
+    elif callback.data == 'ns':
+        murkup_ns = types.InlineKeyboardMarkup()
+        yns = types.InlineKeyboardButton('Да', callback_data='y23')
+        nns = types.InlineKeyboardButton('Нет', callback_data='no')
+        murkup_ns.row(yns, nns)
+        bot.send_message(callback.message.chat.id, 'Начать ли отслеживать объявления по продаже сообществ?', reply_markup=murkup_ns)
+    elif callback.data == 'y23':
+        backns_offer = 0
+        while True:
+            offerns_text = parserns(backns_offer)
+            backns_offer = offerns_text[1]
+            if offerns_text[0] != None:
+                bot.send_message(callback.message.chat.id, offerns_text)
+                time.sleep(600)
+
 def parserdota(back_offer):
     r_dota2acc = requests.get("https://funpay.com/lots/81/")
     html_dota2acc = BS(r_dota2acc.content, 'html.parser')
@@ -324,19 +452,20 @@ def parserdota(back_offer):
         return f'{title}\n{user}\n{price}\n{url}'
     else:
         return None, offer
-def parserark(backark_offer):
+def parserark(backark_postid):
     r_arkacc = requests.get("https://funpay.com/lots/327/")
     html_arkacc = BS(r_arkacc.content, 'html.parser')
     offer = html_arkacc.find("a", class_="tc-item")
-    if offer != backark_offer:
+    ark_postid = offer["data-server"]
+    if ark_postid != backark_postid:
         title = offer.find("div", class_="tc-desc-text").text.strip()
         user = offer.find("div", class_="media-user-name").text.strip()
         price = offer.find("div", class_="tc-price").text.strip()
         url = html_arkacc.find("a", class_= "tc-item", href=True)["href"].strip()
-        print(title, user, price, url, sep="\n\n")
+        print(title, user, price, url, ark_postid, backark_postid, sep="\n\n")
         return f'{title}\n{user}\n{price}\n{url}'
     else:
-        return None, offer
+        return None, ark_postid
 def parserbr(backbr_offer):
     r_bracc = requests.get("https://funpay.com/lots/1442/")
     html_bracc = BS(r_bracc.content, 'html.parser')
@@ -493,174 +622,135 @@ def parserpubgm(backpubgm_offer):
         return f'{title}\n{user}\n{price}\n{url}'
     else:
         return None, offer
-#     elif callback.data == 'rr':
-#         murkup_rr = types.InlineKeyboardMarkup()
-#         category1_rr = types.InlineKeyboardButton('Вирты💵', callback_data='virts15')
-#         category2_rr = types.InlineKeyboardButton('Аккаунты📑', callback_data='acc15')
-#         category3_rr = types.InlineKeyboardButton('Донат💲', callback_data='donat15')
-#         category4_rr = types.InlineKeyboardButton('Предметы🎲', callback_data='predm15')
-#         category5_rr = types.InlineKeyboardButton('Услуги✔', callback_data='uslug15')
-#         category6_rr = types.InlineKeyboardButton('Прочее▶', callback_data='more15')
-#         murkup_rr.row(category1_rr, category2_rr)
-#         murkup_rr.row(category3_rr, category4_rr)
-#         murkup_rr.row(category5_rr, category6_rr)
-#         bot.send_message(callback.message.chat.id, 'Хороший выбор!👍 Теперь выберите категорию📝', reply_markup=murkup_rr)
-#     elif callback.data == 'ru':
-#         murkup_ru = types.InlineKeyboardMarkup()
-#         category1_ru = types.InlineKeyboardButton('Аккаунты📑', callback_data='acc16')
-#         category2_ru = types.InlineKeyboardButton('Ключи🗝', callback_data='keys16')
-#         category3_ru = types.InlineKeyboardButton('Монеты', callback_data='money16')
-#         category4_ru = types.InlineKeyboardButton('Предметы🎲', callback_data='predm16')
-#         category5_ru = types.InlineKeyboardButton('Услуги✔', callback_data='uslug16')
-#         category6_ru = types.InlineKeyboardButton('VIP пропуск💎', callback_data='vip16')
-#         category7_ru = types.InlineKeyboardButton('Twitch Drops', callback_data='twitch16')
-#         category8_ru = types.InlineKeyboardButton('Прочее▶', callback_data='more16')
-#         murkup_ru.row(category1_ru, category2_ru)
-#         murkup_ru.row(category3_ru, category4_ru)
-#         murkup_ru.row(category5_ru, category6_ru)
-#         murkup_ru.row(category7_ru, category8_ru)
-#         bot.send_message(callback.message.chat.id, 'Хороший выбор!👍 Теперь выберите категорию📝', reply_markup=murkup_ru)
-#     elif callback.data == 'wt':
-#         murkup_wt = types.InlineKeyboardMarkup()
-#         category1_wt = types.InlineKeyboardButton('Фарм серебра💵', callback_data='money17')
-#         category2_wt = types.InlineKeyboardButton('Аккаунты📑', callback_data='acc17')
-#         category3_wt = types.InlineKeyboardButton('Прокачка📈', callback_data='boost17')
-#         category4_wt = types.InlineKeyboardButton('Бонус-коды', callback_data='bonus17')
-#         category5_wt = types.InlineKeyboardButton('Прочее▶', callback_data='more17')
-#         murkup_wt.row(category2_wt, category1_wt)
-#         murkup_wt.row(category3_wt, category4_wt)
-#         murkup_wt.row(category5_wt)
-#         bot.send_message(callback.message.chat.id, 'Хороший выбор!👍 Теперь выберите категорию📝', reply_markup=murkup_wt)
-#     elif callback.data == 'wf':
-#         murkup_wf = types.InlineKeyboardMarkup()
-#         category1_wf = types.InlineKeyboardButton('Аккаунты📑', callback_data='acc18')
-#         category3_wf = types.InlineKeyboardButton('Буст PM📈', callback_data='boost118')
-#         category2_wf = types.InlineKeyboardButton('Предметы🎲', callback_data='predm18')
-#         category4_wf = types.InlineKeyboardButton('Буст спецопераций📈', callback_data='boost218')
-#         category5_wf = types.InlineKeyboardButton('Буст побед📈', callback_data='boost318')
-#         category6_wf = types.InlineKeyboardButton('Буст статистики📈', callback_data='boost418')
-#         category7_wf = types.InlineKeyboardButton('Кредиты💵', callback_data='money18')
-#         np_wf = types.InlineKeyboardButton('Следующая страница>>', callback_data='npc4')
-#         murkup_wf.row(category1_wf, category2_wf)
-#         murkup_wf.row(category3_wf, category4_wf)
-#         murkup_wf.row(category5_wf, category6_wf)
-#         murkup_wf.row(category7_wf, np_wf)
-#         bot.send_message(callback.message.chat.id, 'Хороший выбор!👍 Теперь выберите категорию📝', reply_markup=murkup_wf)
-#     elif callback.data == 'wot':
-#         murkup_wot = types.InlineKeyboardMarkup()
-#         category1_wot = types.InlineKeyboardButton('Аккаунты📑', callback_data='acc19')
-#         category2_wot = types.InlineKeyboardButton('Бонус-коды', callback_data='bonus19')
-#         category3_wot = types.InlineKeyboardButton('Буст📈', callback_data='boost19')
-#         category4_wot = types.InlineKeyboardButton('Фарм серебра💵', callback_data='money19')
-#         category5_wot = types.InlineKeyboardButton('Выполнение ЛБЗ', callback_data='lbz19')
-#         category6_wot = types.InlineKeyboardButton('Обучение🤓', callback_data='help19')
-#         category7_wot = types.InlineKeyboardButton('Донат💲', callback_data='donat19')
-#         np_wot = types.InlineKeyboardButton('Следующая страница>>', callback_data='npc5')
-#         murkup_wot.row(category1_wot, category2_wot)
-#         murkup_wot.row(category3_wot, category4_wot)
-#         murkup_wot.row(category5_wot, category6_wot)
-#         murkup_wot.row(category7_wot, np_wot)
-#         bot.send_message(callback.message.chat.id, 'Хороший выбор!👍 Теперь выберите категорию📝', reply_markup=murkup_wot)
-#     elif callback.data == 'wotb':
-#         murkup_wotb = types.InlineKeyboardMarkup()
-#         category1_wotb = types.InlineKeyboardButton('Аккаунты📑', callback_data='acc20')
-#         category2_wotb = types.InlineKeyboardButton('Буст📈', callback_data='boost20')
-#         category3_wotb = types.InlineKeyboardButton('Фарм серебра💵', callback_data='money20')
-#         category4_wotb = types.InlineKeyboardButton('Обучение🤓', callback_data='help20')
-#         category5_wotb = types.InlineKeyboardButton('Золото💰', callback_data='gold20')
-#         category6_wotb = types.InlineKeyboardButton('Донат💲', callback_data='donat20')
-#         category7_wotb = types.InlineKeyboardButton('Бонус-коды', callback_data='bonus20')
-#         category9_wotb = types.InlineKeyboardButton('Прочее▶', callback_data='more20')
-#         category8_wotb = types.InlineKeyboardButton('Кланы👨‍💻', callback_data='clan20')
-#         murkup_wotb.row(category1_wotb, category2_wotb)
-#         murkup_wotb.row(category3_wotb, category4_wotb)
-#         murkup_wotb.row(category5_wotb, category6_wotb)
-#         murkup_wotb.row(category7_wotb, category8_wotb)
-#         murkup_wotb.row(category9_wotb)
-#         bot.send_message(callback.message.chat.id, 'Хороший выбор!👍 Теперь выберите категорию📝', reply_markup=murkup_wotb)
-#     elif callback.data == 'yt':
-#         murkup_yt = types.InlineKeyboardMarkup()
-#         category1_yt = types.InlineKeyboardButton('Услуги✔', callback_data='uslug21')
-#         category2_yt = types.InlineKeyboardButton('Канал', callback_data='chan21')
-#         category3_yt = types.InlineKeyboardButton('Premium💎', callback_data='prime21')
-#         murkup_yt.row(category1_yt, category2_yt)
-#         murkup_yt.row(category3_yt)
-#         bot.send_message(callback.message.chat.id, 'Хороший выбор!👍 Теперь выберите категорию📝', reply_markup=murkup_yt)
-#     elif callback.data == 'tg':
-#         murkup_tg = types.InlineKeyboardMarkup()
-#         category1_tg = types.InlineKeyboardButton('Каналы', callback_data='chan22')
-#         category2_tg = types.InlineKeyboardButton('Услуги✔', callback_data='uslug22')
-#         category3_tg = types.InlineKeyboardButton('Premium💎', callback_data='prime22')
-#         category4_tg = types.InlineKeyboardButton('Прочее▶', callback_data='more22')
-#         murkup_tg.row(category1_tg, category2_tg)
-#         murkup_tg.row(category3_tg, category4_tg)
-#         bot.send_message(callback.message.chat.id, 'Хороший выбор!👍 Теперь выберите категорию📝', reply_markup=murkup_tg)
-#     elif callback.data == 'vk':
-#         murkup_vk = types.InlineKeyboardMarkup()
-#         category1_vk = types.InlineKeyboardButton('Услуги✔', callback_data='uslug23')
-#         category2_vk = types.InlineKeyboardButton('Сообщества', callback_data='chan23')
-#         murkup_vk.row(category1_vk, category2_vk)
-#         bot.send_message(callback.message.chat.id, 'Хороший выбор!👍 Теперь выберите категорию📝', reply_markup=murkup_vk)
-#     elif callback.data == 'ns':
-#         murkup_ns = types.InlineKeyboardMarkup()
-#         category1_ns = types.InlineKeyboardButton('Аккаунты📑', callback_data='acc24')
-#         category2_ns = types.InlineKeyboardButton('Подписка', callback_data='sub24')
-#         category3_ns = types.InlineKeyboardButton('Подарочные карты', callback_data='card24')
-#         murkup_ns.row(category1_ns, category2_ns)
-#         murkup_ns.row(category3_ns)
-#         bot.send_message(callback.message.chat.id, 'Хороший выбор!👍 Теперь выберите категорию📝', reply_markup=murkup_ns)
-#     elif callback.data == 'npc1':
-#         murkup_dota2 = types.InlineKeyboardMarkup()
-#         category8_dota = types.InlineKeyboardButton('Услуги Dota+💎', callback_data='uslugdota')
-#         category9_dota = types.InlineKeyboardButton('Компендиум', callback_data='kompend')
-#         category10_dota = types.InlineKeyboardButton('Прочее▶', callback_data='more7')
-#         pp_dota = types.InlineKeyboardButton('<<Предыдущая страница', callback_data='dota')
-#         murkup_dota2.row(category8_dota, category9_dota)
-#         murkup_dota2.row(category10_dota, pp_dota)
-#         bot.send_message(callback.message.chat.id, '2 страница категорий', reply_markup=murkup_dota2)
-#     elif callback.data == 'npc2':
-#         murkup_mn2 = types.InlineKeyboardMarkup()
-#         category8_mn2 = types.InlineKeyboardButton('Game pass', callback_data='pass11')
-#         category9_mn2 = types.InlineKeyboardButton('Конфиги', callback_data='conf11')
-#         category10_mn2 = types.InlineKeyboardButton('Гайды', callback_data='guide11')
-#         category11_mn2 = types.InlineKeyboardButton('Оффлайн активации', callback_data='offline11')
-#         category12_mn2 = types.InlineKeyboardButton('Прочее▶', callback_data='more11')
-#         pp_mn2 = types.InlineKeyboardButton('<<Предыдущая страница', callback_data='mn')
-#         murkup_mn2.row(category8_mn2, category9_mn2)
-#         murkup_mn2.row(category10_mn2, category11_mn2)
-#         murkup_mn2.row(category12_mn2, pp_mn2)
-#         bot.send_message(callback.message.chat.id, '2 страница категорий', reply_markup=murkup_mn2)
-#     elif callback.data == 'npc3':
-#         murkup_pubgm2 = types.InlineKeyboardMarkup()
-#         category8_pubgm2 = types.InlineKeyboardButton('Популярность', callback_data='pop14')
-#         category9_pubgm2 = types.InlineKeyboardButton('Прочее▶', callback_data='more14')
-#         pp_pubgm2 = types.InlineKeyboardButton('<<Предыдущая страница', callback_data='pubgm')
-#         murkup_pubgm2.row(category8_pubgm2, category9_pubgm2)
-#         murkup_pubgm2.row(pp_pubgm2)
-#         bot.send_message(callback.message.chat.id, '2 страница категорий', reply_markup=murkup_pubgm2)
-#     elif callback.data == 'npc4':
-#         murkup_wf2 = types.InlineKeyboardMarkup()
-#         category8_wf2 = types.InlineKeyboardButton('Достижения', callback_data='dost18')
-#         category9_wf2 = types.InlineKeyboardButton('Twitch Drops', callback_data='twitch18')
-#         category10_wf2 = types.InlineKeyboardButton('Прочее▶', callback_data='more18')
-#         pp_wf2 = types.InlineKeyboardButton('<<Предыдущая страница', callback_data='wf')
-#         murkup_wf2.row(category8_wf2, category9_wf2)
-#         murkup_wf2.row(category10_wf2, pp_wf2)
-#         bot.send_message(callback.message.chat.id, '2 страница категорий', reply_markup=murkup_wf2)
-#     elif callback.data == 'npc5':
-#         murkup_wot2 = types.InlineKeyboardMarkup()
-#         category8_wot2 = types.InlineKeyboardButton('Золото💰', callback_data='gold19')
-#         category9_wot2 = types.InlineKeyboardButton('Кланы👨‍💻', callback_data='clans19')
-#         category10_wot2 = types.InlineKeyboardButton('Коробки🎁', callback_data='box19')
-#         category11_wot2 = types.InlineKeyboardButton('Prime Gaming💎', callback_data='prime19')
-#         category12_wot2 = types.InlineKeyboardButton('Twitch Drops', callback_data='twitch19')
-#         category13_wot2 = types.InlineKeyboardButton('Прочее▶', callback_data='more19')
-#         pp_wot2 = types.InlineKeyboardButton('<<Предыдущая страница', callback_data='wot')
-#         murkup_wot2.row(category8_wot2, category9_wot2)
-#         murkup_wot2.row(category10_wot2, category11_wot2)
-#         murkup_wot2.row(category12_wot2, category13_wot2)
-#         murkup_wot2.row(pp_wot2)
-#         bot.send_message(callback.message.chat.id, '2 страница категорий', reply_markup=murkup_wot2)
-
+def parserrr(backrr_offer):
+    r_rracc = requests.get("https://funpay.com/lots/1438/")
+    html_rracc = BS(r_rracc.content, 'html.parser')
+    offer = html_rracc.find("a", class_="tc-item")
+    if offer != backrr_offer:
+        title = offer.find("div", class_="tc-desc-text").text.strip()
+        user = offer.find("div", class_="media-user-name").text.strip()
+        price = offer.find("div", class_="tc-price").text.strip()
+        url = html_rracc.find("a", class_= "tc-item", href=True)["href"].strip()
+        print(title, user, price, url, sep="\n\n")
+        return f'{title}\n{user}\n{price}\n{url}'
+    else:
+        return None, offer
+def parserru(backru_offer):
+    r_ruacc = requests.get("https://funpay.com/lots/250/")
+    html_ruacc = BS(r_ruacc.content, 'html.parser')
+    offer = html_ruacc.find("a", class_="tc-item")
+    if offer != backru_offer:
+        title = offer.find("div", class_="tc-desc-text").text.strip()
+        user = offer.find("div", class_="media-user-name").text.strip()
+        price = offer.find("div", class_="tc-price").text.strip()
+        url = html_ruacc.find("a", class_= "tc-item", href=True)["href"].strip()
+        print(title, user, price, url, sep="\n\n")
+        return f'{title}\n{user}\n{price}\n{url}'
+    else:
+        return None, offer
+def parserwt(backwt_offer):
+    r_wtacc = requests.get("https://funpay.com/lots/242/")
+    html_wtacc = BS(r_wtacc.content, 'html.parser')
+    offer = html_wtacc.find("a", class_="tc-item")
+    if offer != backwt_offer:
+        title = offer.find("div", class_="tc-desc-text").text.strip()
+        user = offer.find("div", class_="media-user-name").text.strip()
+        price = offer.find("div", class_="tc-price").text.strip()
+        url = html_wtacc.find("a", class_= "tc-item", href=True)["href"].strip()
+        print(title, user, price, url, sep="\n\n")
+        return f'{title}\n{user}\n{price}\n{url}'
+    else:
+        return None, offer
+def parserwf(backwf_offer):
+    r_wfacc = requests.get("https://funpay.com/lots/146/")
+    html_wfacc = BS(r_wfacc.content, 'html.parser')
+    offer = html_wfacc.find("a", class_="tc-item")
+    if offer != backwf_offer:
+        title = offer.find("div", class_="tc-desc-text").text.strip()
+        user = offer.find("div", class_="media-user-name").text.strip()
+        price = offer.find("div", class_="tc-price").text.strip()
+        url = html_wfacc.find("a", class_= "tc-item", href=True)["href"].strip()
+        print(title, user, price, url, sep="\n\n")
+        return f'{title}\n{user}\n{price}\n{url}'
+    else:
+        return None, offer
+def parserwot(backwot_offer):
+    r_wotacc = requests.get("https://funpay.com/lots/77/")
+    html_wotacc = BS(r_wotacc.content, 'html.parser')
+    offer = html_wotacc.find("a", class_="tc-item")
+    if offer != backwot_offer:
+        title = offer.find("div", class_="tc-desc-text").text.strip()
+        user = offer.find("div", class_="media-user-name").text.strip()
+        price = offer.find("div", class_="tc-price").text.strip()
+        url = html_wotacc.find("a", class_= "tc-item", href=True)["href"].strip()
+        print(title, user, price, url, sep="\n\n")
+        return f'{title}\n{user}\n{price}\n{url}'
+    else:
+        return None, offer
+def parserwotb(backwotb_offer):
+    r_wotbacc = requests.get("https://funpay.com/lots/288/")
+    html_wotbacc = BS(r_wotbacc.content, 'html.parser')
+    offer = html_wotbacc.find("a", class_="tc-item")
+    if offer != backwotb_offer:
+        title = offer.find("div", class_="tc-desc-text").text.strip()
+        user = offer.find("div", class_="media-user-name").text.strip()
+        price = offer.find("div", class_="tc-price").text.strip()
+        url = html_wotbacc.find("a", class_= "tc-item", href=True)["href"].strip()
+        print(title, user, price, url, sep="\n\n")
+        return f'{title}\n{user}\n{price}\n{url}'
+    else:
+        return None, offer
+def parseryt(backyt_offer):
+    r_ytacc = requests.get("https://funpay.com/lots/700/")
+    html_ytacc = BS(r_ytacc.content, 'html.parser')
+    offer = html_ytacc.find("a", class_="tc-item")
+    if offer != backyt_offer:
+        title = offer.find("div", class_="tc-desc-text").text.strip()
+        user = offer.find("div", class_="media-user-name").text.strip()
+        price = offer.find("div", class_="tc-price").text.strip()
+        url = html_ytacc.find("a", class_= "tc-item", href=True)["href"].strip()
+        print(title, user, price, url, sep="\n\n")
+        return f'{title}\n{user}\n{price}\n{url}'
+    else:
+        return None, offer
+def parsertg(backrr_offer):
+    r_tgacc = requests.get("https://funpay.com/lots/2424/")
+    html_tgacc = BS(r_tgacc.content, 'html.parser')
+    offer = html_tgacc.find("a", class_="tc-item")
+    if offer != backrr_offer:
+        title = offer.find("div", class_="tc-desc-text").text.strip()
+        user = offer.find("div", class_="media-user-name").text.strip()
+        price = offer.find("div", class_="tc-price").text.strip()
+        url = html_tgacc.find("a", class_= "tc-item", href=True)["href"].strip()
+        print(title, user, price, url, sep="\n\n")
+        return f'{title}\n{user}\n{price}\n{url}'
+    else:
+        return None, offer
+def parservk(backvk_offer):
+    r_vkacc = requests.get("https://funpay.com/lots/699/")
+    html_vkacc = BS(r_vkacc.content, 'html.parser')
+    offer = html_vkacc.find("a", class_="tc-item")
+    if offer != backvk_offer:
+        title = offer.find("div", class_="tc-desc-text").text.strip()
+        user = offer.find("div", class_="media-user-name").text.strip()
+        price = offer.find("div", class_="tc-price").text.strip()
+        url = html_vkacc.find("a", class_= "tc-item", href=True)["href"].strip()
+        print(title, user, price, url, sep="\n\n")
+        return f'{title}\n{user}\n{price}\n{url}'
+    else:
+        return None, offer
+def parserns(backns_offer):
+    r_nsacc = requests.get("https://funpay.com/lots/1318/")
+    html_nsacc = BS(r_nsacc.content, 'html.parser')
+    offer = html_nsacc.find("a", class_="tc-item")
+    if offer != backns_offer:
+        title = offer.find("div", class_="tc-desc-text").text.strip()
+        user = offer.find("div", class_="media-user-name").text.strip()
+        price = offer.find("div", class_="tc-price").text.strip()
+        url = html_nsacc.find("a", class_= "tc-item", href=True)["href"].strip()
+        print(title, user, price, url, sep="\n\n")
+        return f'{title}\n{user}\n{price}\n{url}'
+    else:
+        return None, offer
 
 bot.polling(none_stop=True)
