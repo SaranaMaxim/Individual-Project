@@ -115,7 +115,7 @@ def callback_message(callback):
             print(offerark_text[1])
             if offerark_text[0] != None:
                 bot.send_message(callback.message.chat.id, offerark_text)
-                time.sleep(3)
+                time.sleep(600)
     elif callback.data == 'br':
         murkup_br = types.InlineKeyboardMarkup()
         ybr = types.InlineKeyboardButton('Да', callback_data='y2')
@@ -717,7 +717,7 @@ def parsertg(backtg_offer):
     r_tgacc = requests.get("https://funpay.com/lots/2424/")
     html_tgacc = BS(r_tgacc.content, 'html.parser')
     offer = html_tgacc.find("a", class_="tc-item")
-    if offer != backrr_offer:
+    if offer != backtg_offer:
         title = offer.find("div", class_="tc-desc-text").text.strip()
         user = offer.find("div", class_="media-user-name").text.strip()
         price = offer.find("div", class_="tc-price").text.strip()
